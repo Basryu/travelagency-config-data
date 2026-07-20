@@ -21,19 +21,33 @@ spring:
           uri: lb://user-service
           predicates:
             - Path=/user/**
+          filters:
+            - StripPrefix=1
+
         - id: tour-service
           uri: lb://tour-service
           predicates:
             - Path=/tour/**
+          filters:
+            - StripPrefix=1
+
         - id: booking-service
           uri: lb://booking-service
           predicates:
             - Path=/booking/**
+          filters:
+            - StripPrefix=1
+
         - id: payment-service
           uri: lb://payment-service
           predicates:
             - Path=/payment/**
+          filters:
+            - StripPrefix=1
+
         - id: report-service
           uri: lb://report-service
           predicates:
             - Path=/report/**
+          filters:
+            - StripPrefix=1
