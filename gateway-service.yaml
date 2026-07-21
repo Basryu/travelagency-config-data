@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8001
 
 spring:
   application:
@@ -9,49 +9,42 @@ spring:
       enabled: false
 
     gateway:
-      mvc:
-        routes:
-          - id: booking-service
-            uri: lb://booking-service
-            predicates:
-              - Path=/booking/**
-            filters:
-              - StripPrefix=1
+      discovery:
+        locator:
+          enabled: true
 
-          - id: user-service
-            uri: lb://user-service
-            predicates:
-              - Path=/user/**
-            filters:
-              - StripPrefix=1
+      routes:
+        - id: booking-service
+          uri: lb://booking-service
+          predicates:
+            - Path=/booking/**
 
-          - id: tour-service
-            uri: lb://tour-service
-            predicates:
-              - Path=/tour/**
-            filters:
-              - StripPrefix=1
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user/**
 
-          - id: payment-service
-            uri: lb://payment-service
-            predicates:
-              - Path=/payment/**
-            filters:
-              - StripPrefix=1
+        - id: tour-service
+          uri: lb://tour-service
+          predicates:
+            - Path=/tour/**
 
-          - id: report-service
-            uri: lb://report-service
-            predicates:
-              - Path=/report/**
-            filters:
-              - StripPrefix=1
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/payment/**
+
+        - id: report-service
+          uri: lb://report-service
+          predicates:
+            - Path=/report/**
 
 eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka/
 
 management:
   endpoints:
