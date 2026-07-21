@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: gateway-service
+  cloud:
+    config:
+      enabled: false   # ← Desactiva config server temporalmente
 
   cloud:
     gateway:
