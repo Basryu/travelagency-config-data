@@ -17,26 +17,26 @@ spring:
           
       routes:
         - id: booking-service
-          uri: lb://booking-service
+          uri: lb://BOOKING-SERVICE
           predicates:
             - Path=/booking/**
 
         - id: user-service
-          uri: lb://user-service
+          uri: lb://USER-SERVICE
           predicates:
             - Path=/user/**
 
         - id: tour-service
-          uri: lb://tour-service
+          uri: lb://TOUR-SERVICE
           predicates:
             - Path=/tour/**
 
         - id: payment-service
-          uri: lb://payment-service
+          uri: lb://PAYMENT-SERVICE
           predicates:
             - Path=/payment/**
 
         - id: report-service
-          uri: lb://report-service
+          uri: lb://REPORT-SERVICE
           predicates:
             - Path=/report/**
