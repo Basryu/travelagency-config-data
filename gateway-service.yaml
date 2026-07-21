@@ -11,39 +11,39 @@ eureka:
 spring:
   cloud:
     gateway:
-      mvc:                 
+      mvc:
         routes:
+          - id: booking-service
+            uri: lb://booking-service
+            predicates:
+              - Path=/booking/{segment}
+            filters:
+              - SetPath=/{segment}
+
           - id: user-service
             uri: lb://user-service
             predicates:
-              - Path=/user/**
+              - Path=/user/{segment}
             filters:
-              - StripPrefix=1
+              - SetPath=/{segment}
 
           - id: tour-service
             uri: lb://tour-service
             predicates:
-              - Path=/tour/**
+              - Path=/tour/{segment}
             filters:
-              - StripPrefix=1
-
-          - id: booking-service
-            uri: lb://booking-service
-            predicates:
-              - Path=/booking/**
-            filters:
-              - StripPrefix=1
+              - SetPath=/{segment}
 
           - id: payment-service
             uri: lb://payment-service
             predicates:
-              - Path=/payment/**
+              - Path=/payment/{segment}
             filters:
-              - StripPrefix=1
+              - SetPath=/{segment}
 
           - id: report-service
             uri: lb://report-service
             predicates:
-              - Path=/report/**
+              - Path=/report/{segment}
             filters:
-              - StripPrefix=1
+              - SetPath=/{segment}
